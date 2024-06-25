@@ -1,5 +1,7 @@
 from kedro.pipeline import Pipeline, node
-from .node import load_data, preprocess_fraud_data, preprocess_ip_country_data, preprocess_credit_card_data
+from .nodes import (
+    load_data, preprocess_fraud_data, preprocess_ip_country_data, preprocess_credit_card_data
+)
 
 def create_pipeline(**kwargs):
     return Pipeline(
@@ -12,15 +14,22 @@ def create_pipeline(**kwargs):
             ),
             node(
                 func=preprocess_fraud_data,
-                inputs="raw_fraud_data",
+                inputs=["raw_fraud_data", "raw_ip_country_data"],
                 outputs="preprocessed_fraud_data",
                 name="preprocess_fraud_data_node"
+            ),
+            node(
+                func=preprocess_ip_country_data,
+                inputs="raw_ip_country_data",
+                outputs="preprocessed_ip_country_data",
+                name="preprocess_ip_country_data_node"
             ),
             node(
                 func=preprocess_credit_card_data,
                 inputs="raw_credit_card_data",
                 outputs="preprocessed_credit_card_data",
                 name="preprocess_credit_card_data_node"
-            ),
+            )
         ]
     )
+
