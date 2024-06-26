@@ -1,12 +1,25 @@
 fraud_data:
-  type: panadas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/01_raw/Fraud_Data.csv
 
 ip_country_data:
-  type: panadas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/01_raw/IpAddress_to_Country.csv
 
-
 credit_card_data:
-  type: panadas.CSVDataSet
+  type: pandas.CSVDataset
   filepath: data/01_raw/creditcard.csv
+
+preprocess_fraud_data:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/preprocess_fraud_data.pq
+
+preprocess_ip_country_data:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/preprocess_ip_country_data.pq
+
+preprocess_credit_card_data:
+  type: pandas.ParquetDataset
+  filepath: data/02_intermediate/preprocess_credit_card_data.pq
+
+

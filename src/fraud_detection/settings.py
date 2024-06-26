@@ -38,10 +38,9 @@ CONFIG_LOADER_ARGS = {
 #       }
 }
 
-# Class that manages Kedro's library components.
-# from kedro.framework.context import KedroContext
-# CONTEXT_CLASS = KedroContext
+from fraud_detection.pipelines.data_processing import create_pipeline as de_pipeline
 
-# Class that manages the Data Catalog.
-# from kedro.io import DataCatalog
-# DATA_CATALOG_CLASS = DataCatalog
+PIPELINE = {
+    "__default__": de_pipeline(),
+    "de": de_pipeline()
+}
